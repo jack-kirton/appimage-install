@@ -143,7 +143,7 @@ EOF
 
 function usage() {
   cat <<EOF
-Usage: $0 <--install|--uninstall|--help> [arg]
+Usage: $(basename "$0") <--install|--uninstall|--help> [arg]
 
   --install     Install an AppImage application, where [arg] is the path
                 to the AppImage.
@@ -159,7 +159,7 @@ EOF
 # Argument parsing
 
 case "$1" in
-  --help|-h)
+  --help|-h|"")
     header
     usage
     exit 0
@@ -174,6 +174,7 @@ case "$1" in
     ;;
   *)
     log_error "Unknown option '$COMMAND'"
+    printf "\n"
     usage
     exit 1
     ;;
